@@ -1,4 +1,4 @@
-type AppState = {}
+type AppState = []
 type Action = { type: String, id:number, text:String};
 
 const todos = (state = [], action:Action) => {

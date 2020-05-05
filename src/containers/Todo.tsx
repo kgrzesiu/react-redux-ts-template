@@ -1,23 +1,20 @@
 import React, { Component, MouseEvent } from 'react'
 
 interface Props {
-    completed:Boolean,
-    text:String
+    completed: Boolean,
+    text: String,
+    key: String
 }
-interface State {
+
+class Todo extends Component<Props, {}> {
     
-}
-
-class Todo extends Component<Props, State> {
-    state = {}
-
-    onTodoClick = (event:MouseEvent) => {
+    onTodoClick = (event: MouseEvent) => {
         event.preventDefault();
     }
 
     render() {
         return (
-            <li 
+            <li
                 onClick={this.onTodoClick}
                 style={{
                     textDecoration: this.props.completed ? 'line-through' : 'none'
