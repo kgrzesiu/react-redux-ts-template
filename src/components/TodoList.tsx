@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Todo from '../containers/Todo'
+import { RootState } from '../reducers';
 
 interface Props {
     //todos: []
@@ -9,13 +10,14 @@ interface State {
     //todos: []
 }
 
-export class TodoList extends Component<any, any> {
+type ReduxType = ReturnType<typeof mapStateToProps>
 
+class TodoList extends Component<any> {
     render() {
-        console.log('List:',this.props.todos);
+        console.log('State', this.props.todosx);
         return (
             <ul>
-                { this.props.todos.map((todo:any) => 
+                {this.props.todosx.map((todo: any) =>
                     <Todo completed={todo.completed} text={todo.text} key={todo.id}></Todo>)
                 }
             </ul>
@@ -23,13 +25,13 @@ export class TodoList extends Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: []) => ({
-    todos: state
-})
+const mapStateToProps = (state: RootState) => ({
+    todosx: state.todos.todos
+});
 
-const mapDispatchToProps = {
-    
-}
+// const mapDispatchToProps = {
 
-// export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
-export default TodoList;
+// }
+
+export default connect(mapStateToProps)(TodoList)
+// export default TodoList;
