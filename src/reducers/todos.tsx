@@ -1,13 +1,11 @@
-export type AppState = { todos: any[] }
+export type TodoState =  any[];
 export type Action = { type: String, id: number, text: String };
 
-const initialState: AppState = {
-  todos: [
+const initialState: TodoState = [
     { text: "four", complete: true, id: "4" },
     { text: "five", complete: false, id: "5" },
     { text: "six", complete: false, id: "6" }
-  ]
-}
+]
 
 const todos = (state = initialState, action: Action) => {
   switch (action.type) {
@@ -20,12 +18,12 @@ const todos = (state = initialState, action: Action) => {
           completed: false
         }
       ] */
-    /* case 'TOGGLE_TODO':
+    case 'TOGGLE_TODO':
       return state.map(todo =>
         (todo.id === action.id)
           ? {...todo, completed: !todo.completed}
           : todo
-      ) */
+      ) 
   }
   return state;
 }

@@ -14,11 +14,13 @@ type ReduxType = ReturnType<typeof mapStateToProps>
 
 class TodoList extends Component<any> {
     render() {
-        console.log('State', this.props.todosx);
         return (
             <ul>
                 {this.props.todosx.map((todo: any) =>
-                    <Todo completed={todo.completed} text={todo.text} key={todo.id}></Todo>)
+                    <Todo 
+                    {...todo}
+                    onClick={() => this.props.onToggleTodo(todo.id)} 
+                    key={todo.id}></Todo>)
                 }
             </ul>
         )
@@ -26,12 +28,12 @@ class TodoList extends Component<any> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    todosx: state.todos.todos
+    todosx: state.todos
 });
 
-// const mapDispatchToProps = {
+const mapDispatchToProps = (dispatch: any) => ({
+    onToggleTodo: (id:any) => dispatch({ type: 'TOGGLE_TODO', id: id})
+})
 
-// }
-
-export default connect(mapStateToProps)(TodoList)
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList)
 // export default TodoList;

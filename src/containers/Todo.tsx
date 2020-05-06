@@ -3,13 +3,15 @@ import React, { Component, MouseEvent } from 'react'
 interface Props {
     completed: Boolean,
     text: String,
-    key: String
+    key: String,
+    onClick: Function
 }
 
 class Todo extends Component<Props, {}> {
     
     onTodoClick = (event: MouseEvent) => {
         event.preventDefault();
+        this.props.onClick();
     }
 
     render() {
