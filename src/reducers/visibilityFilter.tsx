@@ -1,6 +1,8 @@
+import { VisibilityFilters } from "../actions";
+
 type Action = { type: String, filter:String};
 
-const visibilityFilter = (state = 'SHOW_ALL', action:Action) => {
+const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action:Action) => {
     switch (action.type) {
       case 'SET_VISIBILITY_FILTER':
         return action.filter

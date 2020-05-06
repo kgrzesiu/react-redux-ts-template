@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Todo from '../containers/Todo'
 import { RootState } from '../reducers';
+import { VisibilityFilters } from '../actions';
 
 interface Props {
     //todos: []
@@ -27,8 +28,22 @@ class TodoList extends Component<any> {
     }
 }
 
+const getVisibleTodos = (todos:any, filter:any) => {
+    switch (filter) {
+      case VisibilityFilters.SHOW_ALL:
+        return todos
+      case VisibilityFilters.SHOW_COMPLETED:
+        return todos.filter((t:any) => t.completed)
+      case VisibilityFilters.SHOW_ACTIVE:
+        return todos.filter((t:any) => !t.completed)
+      default:
+        throw new Error('Unknown filter: ' + filter)
+    }
+  }
+  
+
 const mapStateToProps = (state: RootState) => ({
-    todosx: state.todos
+    todosx: getVisibleTodos(state.todos, state.visibilityFilter)
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -36,4 +51,3 @@ const mapDispatchToProps = (dispatch: any) => ({
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(TodoList)
-// export default TodoList;

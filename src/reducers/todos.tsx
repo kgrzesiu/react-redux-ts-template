@@ -2,9 +2,8 @@ export type TodoState =  any[];
 export type Action = { type: String, id: number, text: String };
 
 const initialState: TodoState = [
-    { text: "four", complete: true, id: "1" },
-    { text: "five", complete: false, id: "2" },
-    { text: "six", complete: false, id: "3" }
+    { text: "First todo", complete: true, id: "1" },
+    { text: "Second todo", complete: false, id: "2" }
 ]
 
 const todos = (state = initialState, action: Action) => {

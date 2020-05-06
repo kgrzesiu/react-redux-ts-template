@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/App.css';
 import AddTodo from '../containers/AddTodo';
 import TodoList from './TodoList';
+import Footer from '../containers/Footer';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <header className="App-header">
         <AddTodo></AddTodo>
         <TodoList></TodoList>
+        <Footer></Footer>
       </header>
     </div>
   );
