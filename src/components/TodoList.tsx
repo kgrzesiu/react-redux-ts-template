@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Todo from '../containers/Todo'
 import { RootState } from '../reducers';
 import { VisibilityFilters } from '../actions';
-import { TOGGLE_TODO } from '../reducers/todos';
+import { TOGGLE_TODO } from '../reducers/todosReducer';
 
 interface Props {
     //todos: []

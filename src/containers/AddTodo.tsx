@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { ADD_TODO } from '../reducers/todos';
+import { ADD_TODO } from '../reducers/todosReducer';
 
 export interface IAddTodoProps {
 }
