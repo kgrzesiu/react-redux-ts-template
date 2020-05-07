@@ -6,19 +6,19 @@ export interface Todo {
 export type TodoState = Todo[];
 
 export const ADD_TODO = "ADD_TODO";
+export const TOGGLE_TODO = "TOGGLE_TODO";
+
 interface AddTodo {
   type: "ADD_TODO",
   text: string
 }
 
-export const TOGGLE_TODO = "TOGGLE_TODO";
 interface ToggleTodo {
   type: "TOGGLE_TODO",
   id: number
 }
 
 type TodoAction = AddTodo | ToggleTodo
-
 
 const initialState: TodoState = [
   { text: "First todo", completed: true, id: 1 },
@@ -28,7 +28,7 @@ const initialState: TodoState = [
 function todosReducer(
   state: ReadonlyArray<Todo> = initialState,
   action: TodoAction
-) {
+): ReadonlyArray<Todo> {
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -45,8 +45,9 @@ function todosReducer(
           ? { ...todo, completed: !todo.completed }
           : todo
       )
+    default:
+      return state;
   }
-  return state;
 }
 
 export default todosReducer

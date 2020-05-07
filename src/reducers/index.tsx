@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux'
-import todos from './todosReducer'
-import visibilityFilter from './visibilityFilter'
+import todosReducer from './todosReducer'
+import visibilityFilterReducer from './visibilityFilterReducer'
 
 export const rootReducer = combineReducers({
-  todos:todos,
-  visibilityFilter
+  todos:todosReducer,
+  visibilityFilter: visibilityFilterReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>
-
