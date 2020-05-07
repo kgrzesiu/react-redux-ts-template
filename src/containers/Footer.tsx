@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 import Link from '../components/Link'
 import { VisibilityFilters } from '../actions'
 
-interface Props {
-
+enum WORK_LOAD {
+    doable = "doable",
+    hard = "hard",
+    insance = "insane"    
 }
-interface State {
 
+interface IState {
+    workloadState: WORK_LOAD;
 }
 
-class Footer extends Component<any, any> {
-    state = {}
+class Footer extends Component<any, IState> {
+    readonly state = { workloadState: WORK_LOAD.doable}
 
     render() {
         return (

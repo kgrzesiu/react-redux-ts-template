@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { ADD_TODO } from '../reducers/todos';
 
 export interface IAddTodoProps {
 }
@@ -35,7 +36,7 @@ class AddTodo extends React.Component<any> {
   }
 }
 const mapDispatchToProps = (dispatch: any) => ({
-  addTodo: (text:String) => dispatch({ type: 'ADD_TODO', text: text})
+  addTodo: (text:String) => dispatch({ type: ADD_TODO, text: text})
 })
 
 export default connect(null,mapDispatchToProps)(AddTodo);

@@ -1,15 +1,15 @@
 import React, { Component, MouseEvent } from 'react'
 
-interface Props {
+interface TodoProps {
     completed: Boolean,
     text: String,
     key: String,
     onClick: Function
 }
 
-class Todo extends Component<Props, {}> {
+class Todo extends Component<TodoProps> {
     
-    onTodoClick = (event: MouseEvent) => {
+    onTodoClick = (event: MouseEvent<HTMLLIElement>) => {
         event.preventDefault();
         this.props.onClick();
     }

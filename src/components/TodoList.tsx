@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Todo from '../containers/Todo'
 import { RootState } from '../reducers';
 import { VisibilityFilters } from '../actions';
+import { TOGGLE_TODO } from '../reducers/todos';
 
 interface Props {
     //todos: []
@@ -47,7 +48,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-    onToggleTodo: (id:any) => dispatch({ type: 'TOGGLE_TODO', id: id})
+    onToggleTodo: (id:any) => dispatch({ type: TOGGLE_TODO, id: id})
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(TodoList)

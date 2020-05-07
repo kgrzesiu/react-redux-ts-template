@@ -4,16 +4,16 @@ import AddTodo from '../containers/AddTodo';
 import TodoList from './TodoList';
 import Footer from '../containers/Footer';
 
-function App() {
-  return (
-    <div className="App">
+class App extends React.Component {
+  render() {
+    return (<div className="App">
       <header className="App-header">
         <AddTodo></AddTodo>
         <TodoList></TodoList>
         <Footer></Footer>
       </header>
-    </div>
-  );
+    </div>)
+  }
 }
 
 export default App;

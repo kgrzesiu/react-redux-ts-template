@@ -1,6 +1,9 @@
 export type TodoState =  any[];
 export type Action = { type: String, id: number, text: String };
 
+export const ADD_TODO = "ADD_TODO";
+export const TOGGLE_TODO = "TOGGLE_TODO";
+
 const initialState: TodoState = [
     { text: "First todo", complete: true, id: "1" },
     { text: "Second todo", complete: false, id: "2" }
@@ -8,7 +11,7 @@ const initialState: TodoState = [
 
 const todos = (state = initialState, action: Action) => {
   switch (action.type) {
-     case 'ADD_TODO':
+     case ADD_TODO:
       return [
         ...state,
         {
@@ -17,7 +20,7 @@ const todos = (state = initialState, action: Action) => {
           completed: false
         }
       ]
-    case 'TOGGLE_TODO':
+    case TOGGLE_TODO:
       return state.map(todo =>
         (todo.id === action.id)
           ? {...todo, completed: !todo.completed}
