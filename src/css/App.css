@@ -42,6 +42,12 @@ https://colorhunt.co/palette/180966
 }
 
 .Navigation a:hover,
-.Navigation a:active {
+.Navigation a:active,
+.Navigation a.active {
   color: #fff3cd;
+  text-decoration: underline;
+}
+
+.Navigation a.customActive {
+  color: #ff926b;
 }
