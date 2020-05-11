@@ -1,24 +1,15 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import Todo from './Todo'
 import { RootState } from '../../store';
 import { VisibilityFilters } from '../../store/visibilityFilters/types';
 import { toggleTodo } from '../../store/todos/actions';
 
-interface Props {
-  //todos: []
-}
-interface State {
-  //todos: []
-}
-
-type ReduxType = ReturnType<typeof mapStateToProps>
-
-class TodoList extends Component<any> {
+class TodoList extends Component<ReduxProps> {
   render() {
     return (
       <ul>
-        {this.props.todosx.map((todo: any) =>
+        {this.props.todos.map((todo: any) =>
           <Todo
             {...todo}
             onClick={() => this.props.toggleTodo(todo.id)}
@@ -45,10 +36,14 @@ const getVisibleTodos = (todos: any, filter: any) => {
 
 
 const mapStateToProps = (state: RootState) => ({
-  todosx: getVisibleTodos(state.todos, state.visibilityFilter)
+  todos: getVisibleTodos(state.todos, state.visibilityFilter)
 });
 
-export default connect(
+const reduxConnector = connect(
   mapStateToProps,
   { toggleTodo }
-)(TodoList)
+);
+
+type ReduxProps = ConnectedProps<typeof reduxConnector>;
+
+export default reduxConnector(TodoList)
