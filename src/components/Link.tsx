@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { VisibilityFilters } from '../store/visibilityFilters/types';
 import { setVisibilityFilter } from '../store/visibilityFilters/actions';
 import { RootState } from '../store';
@@ -9,13 +9,9 @@ interface Props {
     filter: VisibilityFilters;
 }
 
-interface ActionProps {
-    setVisibilityFilter: typeof setVisibilityFilter
-}
+type ComponentProps = Props & ConnectedProps<typeof reduxConnector>;
 
-type ResultProps = Props & ActionProps & ReturnType<typeof mapStateToProps>;
-
-class Link extends Component<ResultProps> {
+class Link extends Component<ComponentProps> {
 
     handleVisibilityClick = () => {
         this.props.setVisibilityFilter(this.props.filter);
@@ -36,9 +32,11 @@ class Link extends Component<ResultProps> {
 
 const mapStateToProps = (state: RootState, ownProps: Props) => ({
     active: ownProps.filter === state.visibilityFilter
-})
+});
 
-export default connect(
+const reduxConnector = connect(
     mapStateToProps,
     { setVisibilityFilter }
-)(Link)
+);
+
+export default reduxConnector(Link)
