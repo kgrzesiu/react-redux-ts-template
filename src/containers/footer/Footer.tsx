@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Link from '../components/Link'
-import { VisibilityFilters } from '../store/visibilityFilters/types'
+import Link from './Link'
+import { VisibilityFilters } from '../../store/visibilityFilters/types'
 
 enum WORK_LOAD {
     doable = "doable",

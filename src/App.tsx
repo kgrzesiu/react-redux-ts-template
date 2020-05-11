@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/App.css';
-import AddTodo from '../containers/AddTodo';
-import TodoList from './TodoList';
-import Footer from '../containers/Footer';
+import './css/App.css';
+import AddTodo from './containers/todos/AddTodo';
+import TodoList from './containers/todos/TodoList';
+import Footer from './containers/footer/Footer';
 
 class App extends React.Component {
   render() {

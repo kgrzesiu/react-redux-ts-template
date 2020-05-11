@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Todo from '../containers/Todo'
-import { RootState } from '../store';
-import { VisibilityFilters } from '../store/visibilityFilters/types';
-import { toggleTodo } from '../store/todos/actions';
+import Todo from './Todo'
+import { RootState } from '../../store';
+import { VisibilityFilters } from '../../store/visibilityFilters/types';
+import { toggleTodo } from '../../store/todos/actions';
 
 interface Props {
   //todos: []

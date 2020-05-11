@@ -1,8 +1,8 @@
 import React, { Component, ReactNode } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { VisibilityFilters } from '../store/visibilityFilters/types';
-import { setVisibilityFilter } from '../store/visibilityFilters/actions';
-import { RootState } from '../store';
+import { VisibilityFilters } from '../../store/visibilityFilters/types';
+import { setVisibilityFilter } from '../../store/visibilityFilters/actions';
+import { RootState } from '../../store';
 
 interface Props {
     children: ReactNode;
