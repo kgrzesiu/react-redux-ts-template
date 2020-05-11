@@ -1,36 +1,42 @@
-import React, { Component, ReactNode, Dispatch } from 'react'
+import React, { Component, ReactNode } from 'react'
 import { connect } from 'react-redux'
-import { setVisibilityFilter, VisibilityFilters } from '../actions'
-import { RootState } from '../reducers';
+import { VisibilityFilters } from '../store/visibilityFilters/types';
+import { setVisibilityFilter } from '../store/visibilityFilters/actions';
+import { RootState } from '../store';
 
 interface Props {
-    children:ReactNode,
-    filter:VisibilityFilters,  
+    children: ReactNode;
+    filter: VisibilityFilters;
 }
 
-type ReduxProps = ReturnType<typeof mapDispatchToProps> & ReturnType<typeof mapStateToProps>
+// type ReduxProps = ReturnType<typeof mapDispatchToProps> & ReturnType<typeof mapStateToProps>
+type ReduxProps = any
 type ResultProps = Props & ReduxProps;
 
 class Link extends Component<ResultProps> {
+
+    handleVisibilityClick = () => {
+        this.props.setVisibilityFilter(this.props.filter);
+    }
+
     render() {
         return (
             <button
-                onClick={this.props.filterClick}
-                style={{ marginLeft: '4px'}}
+                onClick={this.handleVisibilityClick}
+                style={{ marginLeft: '4px' }}
                 disabled={this.props.active}
-                >
+            >
                 {this.props.children}
             </button>
         )
     }
 }
 
-const mapStateToProps = (state:RootState, ownProps:Props) => ({
+const mapStateToProps = (state: RootState, ownProps: Props) => ({
     active: ownProps.filter === state.visibilityFilter
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps:Props) => ({
-    filterClick: () => dispatch(setVisibilityFilter(ownProps.filter))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Link)
+export default connect(
+    mapStateToProps,
+    { setVisibilityFilter }
+)(Link)

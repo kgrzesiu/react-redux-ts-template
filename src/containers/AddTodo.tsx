@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { ADD_TODO } from '../reducers/todosReducer';
+import { addTodo } from '../store/todos/actions'
 
 export interface IAddTodoProps {
 }
@@ -11,11 +11,11 @@ class AddTodo extends React.Component<any> {
 
   onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    let input:HTMLInputElement | null= this.inputRef.current;
-    
-    if (input){
-      let value:String = input.value;
-      if (!value.trim()){
+    let input: HTMLInputElement | null = this.inputRef.current;
+
+    if (input) {
+      let value: String = input.value;
+      if (!value.trim()) {
         return;
       }
       this.props.addTodo(input.value);
@@ -35,8 +35,8 @@ class AddTodo extends React.Component<any> {
     );
   }
 }
-const mapDispatchToProps = (dispatch: any) => ({
-  addTodo: (text:String) => dispatch({ type: ADD_TODO, text: text})
-})
 
-export default connect(null,mapDispatchToProps)(AddTodo);
+export default connect(
+  null,
+  { addTodo }
+)(AddTodo);
