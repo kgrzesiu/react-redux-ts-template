@@ -1,7 +1,7 @@
 import { VisibilityFilters, SET_VISIBILITY_FILTER } from "./types";
 
 interface VisibilityAction {
-  type: String,
+  type: string,
   filter: VisibilityFilters
 }
 

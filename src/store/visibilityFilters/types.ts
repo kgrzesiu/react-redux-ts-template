@@ -6,3 +6,8 @@ export enum VisibilityFilters {
   SHOW_COMPLETED = 'SHOW_COMPLETED',
   SHOW_ACTIVE = 'SHOW_ACTIVE'
 }
+
+export interface ISetVisibilityFilter {
+  type: typeof SET_VISIBILITY_FILTER,
+  filter: string
+}

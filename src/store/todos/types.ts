@@ -2,7 +2,7 @@
 export interface Todo {
     readonly id: number,
     readonly completed: Boolean,
-    readonly text: String
+    readonly text: string
 }
 export type TodoState = Todo[];
 
@@ -11,12 +11,12 @@ export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
 
 export interface AddTodoAction {
-    type: "ADD_TODO",
+    type: typeof ADD_TODO,
     text: string
 }
 
 export interface ToggleTodoAction {
-    type: "TOGGLE_TODO",
+    type: typeof TOGGLE_TODO,
     id: number
 }
 

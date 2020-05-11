@@ -14,7 +14,7 @@ class AddTodo extends React.Component<any> {
     let input: HTMLInputElement | null = this.inputRef.current;
 
     if (input) {
-      let value: String = input.value;
+      let value: string = input.value;
       if (!value.trim()) {
         return;
       }

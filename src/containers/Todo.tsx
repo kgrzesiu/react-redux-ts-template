@@ -2,8 +2,8 @@ import React, { Component, MouseEvent } from 'react'
 
 interface TodoProps {
     completed: Boolean,
-    text: String,
-    key: String,
+    text: string,
+    key: string,
     onClick: Function
 }
 
