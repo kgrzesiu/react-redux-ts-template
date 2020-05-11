@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import './css/App.css';
 
@@ -16,14 +16,19 @@ class App extends React.Component {
           <header className="App-header">
             <nav className="Navigation">
               <ul>
-                <li><a href="/todos">Todos</a></li>
-                <li><a href="/stats">Stats</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/todos">Todos</Link></li>
+                <li><Link to="/stats">Stats</Link></li>
               </ul>
             </nav>
-            <Stats></Stats>
-            <AddTodo></AddTodo>
-            <TodoList></TodoList>
-            <Footer></Footer>
+            <Route path="/" exact render={()=> <h4>Home page of todos</h4>}/>
+
+            <Route path="/todos" component={AddTodo}/>
+            <Route path="/todos" component={TodoList}/>
+            <Route path="/todos" component={Footer}/>
+
+            <Route path="/stats" exact component={Stats}/>
+            
           </header>
         </div>
       </BrowserRouter>)
