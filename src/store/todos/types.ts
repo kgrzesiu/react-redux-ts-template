@@ -10,14 +10,14 @@ export type TodoState = Todo[];
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
 
-export interface AddTodoAction {
+export interface IAddTodoAction {
     type: typeof ADD_TODO,
     text: string
 }
 
-export interface ToggleTodoAction {
+export interface IToggleTodoAction {
     type: typeof TOGGLE_TODO,
     id: number
 }
 
-export type TodoActions = AddTodoAction | ToggleTodoAction
+export type TodoActions = IAddTodoAction | IToggleTodoAction

@@ -1,24 +1,33 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { addTodo } from '../../store/todos/actions'
+import { asyncAddTodo } from '../../store/todos/asyncActions'
 
-export interface IAddTodoProps {
-}
 
-class AddTodo extends React.Component<any> {
+class AddTodo extends React.Component<ConnectedProps<typeof connector>> {
 
   inputRef = React.createRef<HTMLInputElement>();
+  checkboxRef = React.createRef<HTMLInputElement>();
 
   onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     let input: HTMLInputElement | null = this.inputRef.current;
+    let checkbox: HTMLInputElement | null = this.checkboxRef.current;
 
-    if (input) {
+    if (input && checkbox) {
       let value: string = input.value;
       if (!value.trim()) {
         return;
       }
-      this.props.addTodo(input.value);
+
+      //decide to use async or normal action
+      if(!checkbox.checked){
+        this.props.addTodo(input.value);
+      } else {
+        this.props.asyncAddTodo(input.value);
+      }
+
+      
       input.value = '';
     }
   }
@@ -29,6 +38,7 @@ class AddTodo extends React.Component<any> {
         <form onSubmit={this.onSubmit}>
           <label>AddTodo</label>
           <input ref={this.inputRef} />
+          <input ref={this.checkboxRef} type="checkbox" name="isAsync"/>
           <button type="submit">Add</button>
         </form>
       </div>
@@ -36,7 +46,9 @@ class AddTodo extends React.Component<any> {
   }
 }
 
-export default connect(
+const connector = connect(
   null,
-  { addTodo }
-)(AddTodo);
+  { addTodo, asyncAddTodo }
+);
+
+export default connector(AddTodo);
