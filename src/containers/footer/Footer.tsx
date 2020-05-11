@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, MouseEvent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import Link from './Link'
 import { VisibilityFilters } from '../../store/visibilityFilters/types'
@@ -11,11 +11,12 @@ enum WORK_LOAD {
 }
 
 interface IState {
-    workloadState: WORK_LOAD;
+    workload: WORK_LOAD;
 }
 
 class Footer extends Component<ConnectedProps<typeof reduxConnector>, IState> {
-    readonly state = { workloadState: WORK_LOAD.doable}
+    //state here is not used but showed for demo purposes
+    readonly state = { workload: WORK_LOAD.doable}
 
     getWorkLoad(count:number):WORK_LOAD {
         if (count < 3){
@@ -27,6 +28,10 @@ class Footer extends Component<ConnectedProps<typeof reduxConnector>, IState> {
         }
     }
 
+    getWorkLoadState = (event:MouseEvent) => {
+        this.setState({ workload:this.getWorkLoad(this.props.todoCount) })
+    }
+
     render() {
         return (
             <div>
@@ -34,14 +39,16 @@ class Footer extends Component<ConnectedProps<typeof reduxConnector>, IState> {
                 <Link filter={VisibilityFilters.SHOW_ALL}>All</Link>
                 <Link filter={VisibilityFilters.SHOW_ACTIVE}>Active</Link>
                 <Link filter={VisibilityFilters.SHOW_COMPLETED}>Completed</Link>
-                <div>Workload of todos: {this.getWorkLoad(this.props.todoCount)}</div>
+                <div>To complete: {this.props.todoCount}</div>
+                <button onClick={this.getWorkLoadState}>Get Workload state</button>
+                <div>Workload: {this.state.workload}</div>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state: RootState) => ({
-    todoCount: state.todos.length
+    todoCount: state.todos.filter(todo => !todo.completed).length
 });
 
 const reduxConnector = connect(mapStateToProps)
