@@ -9,9 +9,11 @@ interface Props {
     filter: VisibilityFilters;
 }
 
-// type ReduxProps = ReturnType<typeof mapDispatchToProps> & ReturnType<typeof mapStateToProps>
-type ReduxProps = any
-type ResultProps = Props & ReduxProps;
+interface ActionProps {
+    setVisibilityFilter: typeof setVisibilityFilter
+}
+
+type ResultProps = Props & ActionProps & ReturnType<typeof mapStateToProps>;
 
 class Link extends Component<ResultProps> {
 
