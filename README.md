@@ -6,8 +6,13 @@ Repositiory is used for testing and learning React
 
 ## Releases
 
-### 1.0.0 https://github.com/kgrzesiu/react-redux-ts-template/releases/tag/1.0.0
+#### 1.0.1 https://github.com/kgrzesiu/react-redux-ts-template/releases/tag/1.0.1
+Added Thunk, async actions and Dev Tools for React with middleware
+
+#### 1.0.0 https://github.com/kgrzesiu/react-redux-ts-template/releases/tag/1.0.0
 Basic application using React, Redux, Typescript
+
+
 
 ## Available Scripts
 
