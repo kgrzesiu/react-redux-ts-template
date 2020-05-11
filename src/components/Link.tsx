@@ -1,19 +1,17 @@
-import React, { Component, ReactNode } from 'react'
+import React, { Component, ReactNode, Dispatch } from 'react'
 import { connect } from 'react-redux'
-import { setVisibilityFilter } from '../actions'
+import { setVisibilityFilter, VisibilityFilters } from '../actions'
+import { RootState } from '../reducers';
 
 interface Props {
     children:ReactNode,
-    filter:String,  
+    filter:VisibilityFilters,  
 }
 
-interface State {
-    
-}
+type ReduxProps = ReturnType<typeof mapDispatchToProps> & ReturnType<typeof mapStateToProps>
+type ResultProps = Props & ReduxProps;
 
-class Link extends Component<any> {
-    state = {}
-
+class Link extends Component<ResultProps> {
     render() {
         return (
             <button
@@ -27,11 +25,11 @@ class Link extends Component<any> {
     }
 }
 
-const mapStateToProps = (state:any, ownProps:Props) => ({
+const mapStateToProps = (state:RootState, ownProps:Props) => ({
     active: ownProps.filter === state.visibilityFilter
 })
 
-const mapDispatchToProps = (dispatch: any, ownProps:Props) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps:Props) => ({
     filterClick: () => dispatch(setVisibilityFilter(ownProps.filter))
 })
 
