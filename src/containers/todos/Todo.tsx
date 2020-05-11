@@ -1,4 +1,5 @@
 import React, { Component, MouseEvent } from 'react'
+import '../../css/Todo.css'
 
 interface TodoProps {
     completed: Boolean,
@@ -16,7 +17,7 @@ class Todo extends Component<TodoProps> {
 
     render() {
         return (
-            <li
+            <li className="Todo"
                 onClick={this.onTodoClick}
                 style={{
                     textDecoration: this.props.completed ? 'line-through' : 'none'

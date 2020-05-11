@@ -5,10 +5,12 @@ import { RootState } from '../../store';
 import { VisibilityFilters } from '../../store/visibilityFilters/types';
 import { toggleTodo } from '../../store/todos/actions';
 
+import '../../css/TodoList.css';
+
 class TodoList extends Component<ReduxProps> {
   render() {
     return (
-      <ul>
+      <ul className="TodoList">
         {this.props.todos.map((todo: any) =>
           <Todo
             {...todo}

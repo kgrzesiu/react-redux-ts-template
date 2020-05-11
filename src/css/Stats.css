@@ -1,0 +1,18 @@
+.Stats {
+    width: 60%;
+    margin: 10px;
+    padding: 0;
+    background-color: #ff926b;
+    border: 1px solid #fff3cd;
+    box-shadow: 0 2px 3px #fff3cd;
+    text-align: center;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.Stats button {
+    margin: 20px;
+    min-width: 80px;
+    background-color: #4d3e3e;
+    color: #fff3cd;
+}

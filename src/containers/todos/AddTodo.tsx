@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import { addTodo } from '../../store/todos/actions'
 import { asyncAddTodo } from '../../store/todos/asyncActions'
 
+import '../../css/AddTodo.css'
 
 class AddTodo extends React.Component<ConnectedProps<typeof connector>> {
 
@@ -34,10 +35,11 @@ class AddTodo extends React.Component<ConnectedProps<typeof connector>> {
 
   public render() {
     return (
-      <div>
+      <div className="AddTodo">
         <form onSubmit={this.onSubmit}>
           <label>AddTodo</label>
           <input ref={this.inputRef} />
+          <label>Async?</label>
           <input ref={this.checkboxRef} type="checkbox" name="isAsync"/>
           <button type="submit">Add</button>
         </form>

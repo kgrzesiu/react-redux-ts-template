@@ -1,14 +1,47 @@
+/* 
+Pallette
+#4d3e3e 
+#fff3cd
+#ffc38b
+#ff926b
+
+https://colorhunt.co/palette/180966
+*/
+
 .App {
   text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #4d3e3e;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   font-size: calc(8px + 1vmin);
   color: white;
+}
+
+.Navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.Navigation li {
+  display: inline-block;
+  margin: 20px;
+}
+
+.Navigation li a {
+  text-decoration: none;
+  color: #ff926b;
+}
+
+.Navigation a:hover,
+.Navigation a:active {
+  color: #fff3cd;
 }
