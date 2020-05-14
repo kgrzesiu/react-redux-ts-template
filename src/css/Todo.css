@@ -8,3 +8,10 @@
     text-align: center;
     box-sizing: border-box;
 }
+
+.Todo button {
+    margin: 5px;
+    min-width: 80px;
+    background-color: #4d3e3e;
+    color: #ff926b;
+}

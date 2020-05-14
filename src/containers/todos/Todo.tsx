@@ -1,32 +1,41 @@
 import React, { Component, MouseEvent } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+
 import '../../css/Todo.css'
 
-interface TodoProps {
+interface TodoProps extends RouteComponentProps {
     completed: Boolean,
     text: string,
     key: string,
+    id: string,
     onClick: Function
 }
 
 class Todo extends Component<TodoProps> {
     
-    onTodoClick = (event: MouseEvent<HTMLLIElement>) => {
+    onTodoClick = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         this.props.onClick();
+    }
+
+    detailsClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        console.log(this.props.history.push("/"+this.props.id))
     }
 
     render() {
         return (
             <li className="Todo"
-                onClick={this.onTodoClick}
                 style={{
                     textDecoration: this.props.completed ? 'line-through' : 'none'
                 }}
             >
                 {this.props.text}
+                <button onClick={this.onTodoClick}>TOGGLE</button>
+                <button onClick={this.detailsClickHandler}>DETAILS</button>
             </li>
         )
     }
 }
 
-export default Todo;
+export default withRouter(Todo);
