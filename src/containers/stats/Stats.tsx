@@ -44,7 +44,7 @@ class Stats extends React.Component<ConnectedProps<typeof reduxConnector>, IStat
 }
 
 const mapStateToProps = (state: RootState) => ({
-  todos: state.todos
+  todos: state.todos.filter(todo => !todo.completed)
 });
 
 const reduxConnector = connect(mapStateToProps)
