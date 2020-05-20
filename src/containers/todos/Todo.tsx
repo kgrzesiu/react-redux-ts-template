@@ -20,7 +20,7 @@ class Todo extends Component<TodoProps> {
 
     detailsClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        console.log(this.props.history.push("/"+this.props.id))
+        this.props.history.push("/"+this.props.id)
     }
 
     render() {
