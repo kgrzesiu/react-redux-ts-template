@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureStore from "./store";
 import * as serviceWorker from './serviceWorker';
 
-import configureAxios from './services/remote/axios';
+import { configureAxios } from './services/remote/axios';
 import './css/index.css';
 
 //Remote services initialization

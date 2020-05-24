@@ -4,7 +4,7 @@ import Todo from './Todo'
 import { RootState } from '../../store';
 import { VisibilityFilters } from '../../store/visibilityFilters/types';
 import { toggleTodo, replaceTodos } from '../../store/todos/actions';
-import axios from 'axios';
+import axios from './../../services/remote/axios';
 
 import '../../css/TodoList.css';
 
@@ -15,7 +15,7 @@ class TodoList extends Component<ReduxProps> {
   }
 
   componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?userId=1')
+    axios.get('/todos?userId=1')
       .then(response => {
         let newTodos = response.data.map((todo: any) => ({
           text: todo.title,

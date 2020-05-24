@@ -1,8 +1,13 @@
 import axios from 'axios';
 
-export default function configureAxios(): { requestHandle: number, responseHandle: number } {
+const axiosInstance = axios.create({
+    baseURL : "https://jsonplaceholder.typicode.com"
+})
+
+export function configureAxios(): { requestHandle: number, responseHandle: number } {
+
     //request
-    let requestHandle = axios.interceptors.request.use(requestConfig => {
+    let requestHandle = axiosInstance.interceptors.request.use(requestConfig => {
         return requestConfig;
     }, requestError => {
         //globally log error
@@ -11,7 +16,7 @@ export default function configureAxios(): { requestHandle: number, responseHandl
     });
 
     //response
-    let responseHandle = axios.interceptors.response.use(response => {
+    let responseHandle = axiosInstance.interceptors.response.use(response => {
         return response;
     }, responseError => {
         //globally log error
@@ -21,3 +26,5 @@ export default function configureAxios(): { requestHandle: number, responseHandl
 
     return { requestHandle, responseHandle }
 }
+
+export default axiosInstance;
