@@ -26,17 +26,18 @@ class App extends React.Component {
                 }}>Stats</NavLink></li>
               </ul>
             </nav>
-            <Route path="/" exact render={() => <h4>Home page of todos</h4>} />
+           
             <Switch>
-              <Route exact path="/todos">
+              <Route exact path="/todos/">
                 <AddTodo></AddTodo>
                 <TodoList></TodoList>
                 <Footer></Footer>
               </Route>
-              <Route path="/stats" exact component={Stats} />
-              <Route path="/:todoId" exact component={TodoDetails} />
+              <Route path="/todos/:todoId" component={TodoDetails} />
+              <Route path="/stats" component={Stats} />
+              <Route path="/" exact render={() => <h4>Home page of todos</h4>} />
+              <Route render={() => <h4>Error 404</h4>} />
             </Switch>
-
           </header>
         </div>
       </BrowserRouter>)
