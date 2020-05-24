@@ -17,7 +17,6 @@ class TodoList extends Component<ReduxProps> {
   componentDidMount() {
     axios.get('https://jsonplaceholder.typicode.com/todos?userId=1')
       .then(response => {
-        console.log(response);
         let newTodos = response.data.map((todo: any) => ({
           text: todo.title,
           id: todo.id,
@@ -26,7 +25,6 @@ class TodoList extends Component<ReduxProps> {
         this.props.replaceTodos(newTodos.slice(0,6));
       })
       .catch(error => {
-        console.log(error);
         this.setState({
           requestError: true
         })
