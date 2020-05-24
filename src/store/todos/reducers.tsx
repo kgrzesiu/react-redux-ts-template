@@ -1,4 +1,4 @@
-import { Todo, TodoState,TodoActions, ADD_TODO, TOGGLE_TODO } from './types';
+import { Todo, TodoState,TodoActions, ADD_TODO, TOGGLE_TODO, REPLACE_TODOS } from './types';
 
 const initialState: TodoState= [
   { text: "First todo", completed: true, id: 1 },
@@ -25,6 +25,8 @@ function todosReducer(
           ? { ...todo, completed: !todo.completed }
           : todo
       )
+      case REPLACE_TODOS:
+        return action.todos
     default:
       return state;
   }

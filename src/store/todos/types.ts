@@ -9,6 +9,7 @@ export type TodoState = Todo[];
 // Describing the different ACTION NAMES available
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
+export const REPLACE_TODOS = "REPLACE_TODOS";
 
 export interface IAddTodoAction {
     type: typeof ADD_TODO,
@@ -20,4 +21,9 @@ export interface IToggleTodoAction {
     id: number
 }
 
-export type TodoActions = IAddTodoAction | IToggleTodoAction
+export interface IReplaceTodosAction {
+    type: typeof REPLACE_TODOS,
+    todos: Todo[]
+}
+
+export type TodoActions = IAddTodoAction | IToggleTodoAction | IReplaceTodosAction

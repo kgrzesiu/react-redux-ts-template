@@ -3,11 +3,26 @@ import { connect, ConnectedProps } from 'react-redux'
 import Todo from './Todo'
 import { RootState } from '../../store';
 import { VisibilityFilters } from '../../store/visibilityFilters/types';
-import { toggleTodo } from '../../store/todos/actions';
+import { toggleTodo, replaceTodos } from '../../store/todos/actions';
+import axios from 'axios';
 
 import '../../css/TodoList.css';
 
 class TodoList extends Component<ReduxProps> {
+
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?userId=1')
+      .then(response => {
+        console.log(response);
+        let newTodos = response.data.map((todo: any) => ({
+          text: todo.title,
+          id: todo.id,
+          completed: todo.completed
+        }));
+        this.props.replaceTodos(newTodos.slice(0,6));
+      })
+  }
+
   render() {
     return (
       <ul className="TodoList">
@@ -43,7 +58,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const reduxConnector = connect(
   mapStateToProps,
-  { toggleTodo }
+  { toggleTodo, replaceTodos }
 );
 
 type ReduxProps = ConnectedProps<typeof reduxConnector>;
