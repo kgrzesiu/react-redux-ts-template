@@ -10,6 +10,10 @@ import '../../css/TodoList.css';
 
 class TodoList extends Component<ReduxProps> {
 
+  state = {
+    requestError: false
+  }
+
   componentDidMount() {
     axios.get('https://jsonplaceholder.typicode.com/todos?userId=1')
       .then(response => {
@@ -21,9 +25,16 @@ class TodoList extends Component<ReduxProps> {
         }));
         this.props.replaceTodos(newTodos.slice(0,6));
       })
+      .catch(error => {
+        console.log(error);
+        this.setState({
+          requestError: true
+        })
+      })
   }
 
   render() {
+    let errorPrompt = this.state.requestError ? <p>Error loading async todos</p> : null;
     return (
       <ul className="TodoList">
         {this.props.todos.map((todo: any) =>
@@ -32,6 +43,7 @@ class TodoList extends Component<ReduxProps> {
             onClick={() => this.props.toggleTodo(todo.id)}
             key={todo.id}></Todo>)
         }
+        {errorPrompt}
       </ul>
     )
   }
