@@ -4,7 +4,7 @@ import Todo from './Todo'
 import { RootState } from '../../store';
 import { VisibilityFilters } from '../../store/visibilityFilters/types';
 import { toggleTodo, replaceTodos } from '../../store/todos/actions';
-import axios from './../../services/remote/axios';
+import { getTodos } from './../../services/remote/todosService';
 
 import '../../css/TodoList.css';
 
@@ -14,21 +14,16 @@ class TodoList extends Component<ReduxProps> {
     requestError: false
   }
 
-  componentDidMount() {
-    axios.get('/todos?userId=1')
-      .then(response => {
-        let newTodos = response.data.map((todo: any) => ({
-          text: todo.title,
-          id: todo.id,
-          completed: todo.completed
-        }));
-        this.props.replaceTodos(newTodos.slice(0,6));
-      })
-      .catch(error => {
-        this.setState({
-          requestError: true
-        })
-      })
+  async componentDidMount() {
+    let newTodos = await getTodos();
+    console.log('Todolist', newTodos);
+    if (newTodos != null) {
+      this.props.replaceTodos(newTodos.slice(0, 6));
+    } else {
+      this.setState({
+        requestError: true
+      });
+    }
   }
 
   render() {
