@@ -11,7 +11,7 @@ export function configureAxios(): { requestHandle: number, responseHandle: numbe
         return requestConfig;
     }, requestError => {
         //globally log error
-        console.log('Request Error', requestError)
+        console.log('Global Catch, Request Error:', requestError)
         return Promise.reject(requestError);
     });
 
@@ -20,7 +20,7 @@ export function configureAxios(): { requestHandle: number, responseHandle: numbe
         return response;
     }, responseError => {
         //globally log error
-        console.log('Response failed:', responseError)
+        console.log('Global Catch, Response failed:', responseError)
         return Promise.reject(responseError);
     });
 

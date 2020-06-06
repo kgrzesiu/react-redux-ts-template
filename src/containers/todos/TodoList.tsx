@@ -3,8 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import Todo from './Todo'
 import { RootState } from '../../store';
 import { VisibilityFilters } from '../../store/visibilityFilters/types';
-import { toggleTodo, replaceTodos } from '../../store/todos/actions';
-import { getTodos } from './../../services/remote/todosService';
+import { toggleTodo, fetchTodos } from '../../store/todos/actions';
 
 import '../../css/TodoList.css';
 
@@ -15,15 +14,7 @@ class TodoList extends Component<ReduxProps> {
   }
 
   async componentDidMount() {
-    let newTodos = await getTodos();
-    console.log('Todolist', newTodos);
-    if (newTodos != null) {
-      this.props.replaceTodos(newTodos.slice(0, 6));
-    } else {
-      this.setState({
-        requestError: true
-      });
-    }
+    this.props.fetchTodos();
   }
 
   render() {
@@ -63,7 +54,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const reduxConnector = connect(
   mapStateToProps,
-  { toggleTodo, replaceTodos }
+  { toggleTodo, fetchTodos }
 );
 
 type ReduxProps = ConnectedProps<typeof reduxConnector>;

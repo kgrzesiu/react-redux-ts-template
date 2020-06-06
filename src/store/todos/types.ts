@@ -9,7 +9,8 @@ export type TodoState = Todo[];
 // Describing the different ACTION NAMES available
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
-export const REPLACE_TODOS = "REPLACE_TODOS";
+export const LOADED_TODOS = "LOADED_TODOS";
+export const LOADING_FAILED = "LOADING_FAILED";
 
 export interface IAddTodoAction {
     type: typeof ADD_TODO,
@@ -21,9 +22,14 @@ export interface IToggleTodoAction {
     id: number
 }
 
-export interface IReplaceTodosAction {
-    type: typeof REPLACE_TODOS,
+export interface ILoadedTodosAction {
+    type: typeof LOADED_TODOS,
     todos: Todo[]
 }
 
-export type TodoActions = IAddTodoAction | IToggleTodoAction | IReplaceTodosAction
+export interface ILoadingFailedTodosAction {
+    type: typeof LOADING_FAILED,
+    error: string
+}
+
+export type TodoActions = IAddTodoAction | IToggleTodoAction | ILoadedTodosAction | ILoadingFailedTodosAction
