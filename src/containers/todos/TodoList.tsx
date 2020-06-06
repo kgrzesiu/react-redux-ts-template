@@ -6,6 +6,7 @@ import { VisibilityFilters } from '../../store/visibilityFilters/types';
 import { toggleTodo, fetchTodos } from '../../store/todos/actions';
 
 import '../../css/TodoList.css';
+import { Todo as TodoItem } from '../../store/todos/types';
 
 class TodoList extends Component<ReduxProps> {
 
@@ -33,7 +34,7 @@ class TodoList extends Component<ReduxProps> {
   }
 }
 
-const getVisibleTodos = (todos: any, filter: any) => {
+const getVisibleTodos = (todos: TodoItem[], filter: any) => {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
       return todos
@@ -42,14 +43,13 @@ const getVisibleTodos = (todos: any, filter: any) => {
     case VisibilityFilters.SHOW_ACTIVE:
       return todos.filter((t: any) => !t.completed)
     default:
-      console.log(filter)
       throw new Error('Unknown filter: ' + filter)
   }
 }
 
 
 const mapStateToProps = (state: RootState) => ({
-  todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  todos: getVisibleTodos(state.todos.todos, state.visibilityFilter)
 });
 
 const reduxConnector = connect(

@@ -4,7 +4,10 @@ export interface Todo {
     readonly completed: Boolean,
     readonly text: string
 }
-export type TodoState = Todo[];
+export interface TodoState {
+    todos: Todo[],
+    loading: boolean
+}
 
 // Describing the different ACTION NAMES available
 export const ADD_TODO = "ADD_TODO";

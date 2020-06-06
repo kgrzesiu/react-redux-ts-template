@@ -1,34 +1,44 @@
-import { Todo, TodoState, TodoActions, ADD_TODO, TOGGLE_TODO, LOADED_TODOS, LOADING_FAILED } from './types';
+import { TodoState, TodoActions, ADD_TODO, TOGGLE_TODO, LOADED_TODOS, LOADING_FAILED } from './types';
+import { updateObject } from '../utilities';
 
-const initialState: TodoState = [
-  { text: "First todo", completed: true, id: 1 },
-  { text: "Second todo", completed: false, id: 2 }
-]
+const initialState: TodoState = {
+  todos: [
+    { text: "First todo", completed: true, id: 1 },
+    { text: "Second todo", completed: false, id: 2 }],
+  loading: false
+}
 
 function todosReducer(
-  state: ReadonlyArray<Todo> = initialState,
+  state: Readonly<TodoState> = initialState,
   action: TodoActions
-): ReadonlyArray<Todo> {
+): Readonly<TodoState> {
   switch (action.type) {
+    
     case ADD_TODO:
-      return [
-        ...state,
-        {
-          id: state.length + 1,
-          text: action.text,
-          completed: false
-        }
-      ]
+      return updateObject(state, {
+        todos: [
+          ...state.todos,
+          {
+            id: state.todos.length + 1,
+            text: action.text,
+            completed: false
+          }
+        ]
+      })
+
     case TOGGLE_TODO:
-      return state.map(todo =>
-        (todo.id === action.id)
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      )
+      return updateObject(state, {
+        todos: state.todos.map(todo =>
+          (todo.id === action.id)
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        )
+      })
+
     case LOADED_TODOS:
-      return action.todos
+      return updateObject(state, {todos:action.todos});
     case LOADING_FAILED:
-      return state;
+      return updateObject(state, {loading:false});
     default:
       return state;
   }
