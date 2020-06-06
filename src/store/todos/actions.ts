@@ -1,12 +1,14 @@
 import {
     ADD_TODO,
     TOGGLE_TODO,
-    LOADED_TODOS,
-    LOADING_FAILED,
+    FETCH_TODOS_FAILED,
+    FETCH_TODOS_START,
+    FETCH_TODOS_SUCCESS,
     IAddTodoAction,
     IToggleTodoAction,
-    ILoadedTodosAction,
-    ILoadingFailedTodosAction,
+    IFetchTodosSuccessAction,
+    IFetchTodosFailedAction,
+    IFetchTodosStartAction,
     Todo
 } from "./types";
 
@@ -29,30 +31,37 @@ export function toggleTodo(id: number): IToggleTodoAction {
     }
 }
 
-export function loadedTodos(todos: Todo[]): ILoadedTodosAction {
+export function fetchTodosSuccess(todos: Todo[]): IFetchTodosSuccessAction {
     return {
-        type: LOADED_TODOS,
+        type: FETCH_TODOS_SUCCESS,
         todos: todos
     }
 }
 
-export function failedToLoadedTodos(error:string): ILoadingFailedTodosAction {
+export function fetchTodosFailed(error:string): IFetchTodosFailedAction {
     return {
-        type: LOADING_FAILED,
+        type: FETCH_TODOS_FAILED,
         error: error
+    }
+}
+
+export function fetchTodosStart(): IFetchTodosStartAction {
+    return {
+        type: FETCH_TODOS_START
     }
 }
 
 export const fetchTodos = (): ThunkAction<void, RootState, null, Action<string>> => {
     return async (dispatch: Dispatch) => {
+        dispatch(fetchTodosStart())
         try {
             const asyncResp = await getTodos();
             const todos: Todo[] = asyncResp.slice(0, 6);
-            dispatch(loadedTodos(todos))
+            dispatch(fetchTodosSuccess(todos))
         }
         catch (error) {
             console.log('Catched Error',error);
-            dispatch(failedToLoadedTodos(error));
+            dispatch(fetchTodosFailed(error));
         }
     }
 }

@@ -1,4 +1,14 @@
-import { TodoState, TodoActions, ADD_TODO, TOGGLE_TODO, LOADED_TODOS, LOADING_FAILED, IAddTodoAction, IToggleTodoAction } from './types';
+import {
+  TodoState,
+  TodoActions,
+  ADD_TODO,
+  TOGGLE_TODO,
+  FETCH_TODOS_FAILED,
+  FETCH_TODOS_START,
+  FETCH_TODOS_SUCCESS,
+  IAddTodoAction,
+  IToggleTodoAction
+} from './types';
 import { updateObject } from '../utilities';
 
 const initialState: TodoState = {
@@ -9,7 +19,7 @@ const initialState: TodoState = {
   error: undefined
 }
 
-const addTodo = (state:TodoState, action:IAddTodoAction) => {
+const addTodo = (state: TodoState, action: IAddTodoAction) => {
   return updateObject(state, {
     todos: [
       ...state.todos,
@@ -22,7 +32,7 @@ const addTodo = (state:TodoState, action:IAddTodoAction) => {
   })
 }
 
-const toggleTodo = (state:TodoState, action:IToggleTodoAction) => {
+const toggleTodo = (state: TodoState, action: IToggleTodoAction) => {
   return updateObject(state, {
     todos: state.todos.map(todo =>
       (todo.id === action.id)
@@ -37,11 +47,12 @@ function todosReducer(
   action: TodoActions
 ): Readonly<TodoState> {
   switch (action.type) {
-    
+
     case ADD_TODO: return addTodo(state, action);
-    case TOGGLE_TODO: return toggleTodo(state,action);
-    case LOADED_TODOS: return updateObject(state, {todos:action.todos});
-    case LOADING_FAILED: return updateObject(state, {loading:false});
+    case TOGGLE_TODO: return toggleTodo(state, action);
+    case FETCH_TODOS_SUCCESS: return updateObject(state, { todos: action.todos, loading: false });
+    case FETCH_TODOS_FAILED: return updateObject(state, { loading: false, error: action.error });
+    case FETCH_TODOS_START: return updateObject(state, { loading: true, error: undefined });
     default:
       return state;
   }

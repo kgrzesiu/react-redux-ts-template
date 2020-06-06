@@ -19,7 +19,12 @@ class TodoList extends Component<ReduxProps> {
   }
 
   render() {
-    let errorPrompt = this.state.requestError ? <p>Error loading async todos</p> : null;
+    let errorPrompt = this.props.error !== undefined  ? <p>Error loading async todos</p> : null;
+    let loadingPrompt = null;
+    if (errorPrompt == null){
+      loadingPrompt = this.props.loading ? <p>Loading todos</p> : <p>Loaded todos</p>;
+    }
+   
     return (
       <ul className="TodoList">
         {this.props.todos.map((todo: any) =>
@@ -29,6 +34,7 @@ class TodoList extends Component<ReduxProps> {
             key={todo.id}></Todo>)
         }
         {errorPrompt}
+        {loadingPrompt}
       </ul>
     )
   }
@@ -49,7 +55,9 @@ const getVisibleTodos = (todos: TodoItem[], filter: any) => {
 
 
 const mapStateToProps = (state: RootState) => ({
-  todos: getVisibleTodos(state.todos.todos, state.visibilityFilter)
+  todos: getVisibleTodos(state.todos.todos, state.visibilityFilter),
+  loading: state.todos.loading,
+  error: state.todos.error
 });
 
 const reduxConnector = connect(

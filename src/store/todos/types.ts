@@ -13,8 +13,10 @@ export interface TodoState {
 // Describing the different ACTION NAMES available
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
-export const LOADED_TODOS = "LOADED_TODOS";
-export const LOADING_FAILED = "LOADING_FAILED";
+
+export const FETCH_TODOS_START = "FETCH_TODOS_START";
+export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
+export const FETCH_TODOS_FAILED = "FETCH_TODOS_FAILED";
 
 export interface IAddTodoAction {
     type: typeof ADD_TODO,
@@ -26,14 +28,23 @@ export interface IToggleTodoAction {
     id: number
 }
 
-export interface ILoadedTodosAction {
-    type: typeof LOADED_TODOS,
+export interface IFetchTodosSuccessAction {
+    type: typeof FETCH_TODOS_SUCCESS,
     todos: Todo[]
 }
 
-export interface ILoadingFailedTodosAction {
-    type: typeof LOADING_FAILED,
+export interface IFetchTodosFailedAction {
+    type: typeof FETCH_TODOS_FAILED,
     error: string
 }
 
-export type TodoActions = IAddTodoAction | IToggleTodoAction | ILoadedTodosAction | ILoadingFailedTodosAction
+export interface IFetchTodosStartAction {
+    type: typeof FETCH_TODOS_START
+}
+
+export type TodoActions =
+    IAddTodoAction |
+    IToggleTodoAction |
+    IFetchTodosSuccessAction |
+    IFetchTodosFailedAction |
+    IFetchTodosStartAction;
