@@ -10,7 +10,7 @@ import {
     Todo
 } from "./types";
 
-import { getTodos } from './../../services/remote/todosService';
+import { getTodos } from './asyncActions';
 import { ThunkAction } from "redux-thunk";
 import { Action, Dispatch } from "redux";
 import { RootState } from "..";

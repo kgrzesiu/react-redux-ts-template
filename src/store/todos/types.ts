@@ -6,7 +6,8 @@ export interface Todo {
 }
 export interface TodoState {
     todos: Todo[],
-    loading: boolean
+    loading: boolean,
+    error?: string
 }
 
 // Describing the different ACTION NAMES available
