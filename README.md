@@ -5,6 +5,10 @@ Each release will contain more added functionality, final release should contain
 Repositiory is used for testing and learning React
 
 ## Releases
+
+#### 1.0.5 https://github.com/kgrzesiu/react-redux-ts-template/releases/tag/1.0.5
+Example of using CSS modules - supported out of the box in Create React App
+
 #### 1.0.4 https://github.com/kgrzesiu/react-redux-ts-template/releases/tag/1.0.4
 Async remote with error handling and proper action structure
 
