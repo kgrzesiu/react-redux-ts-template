@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
-// import './css/App.css';
-
 import AddTodo from './containers/todos/AddTodo';
 import TodoList from './containers/todos/TodoList';
 import Footer from './containers/footer/Footer';

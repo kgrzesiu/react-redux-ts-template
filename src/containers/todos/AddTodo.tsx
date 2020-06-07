@@ -4,8 +4,6 @@ import { addTodo } from '../../store/todos/actions'
 import { asyncAddTodo } from '../../store/todos/asyncActions'
 import { Button, TextField, Checkbox, FormControlLabel, Paper } from '@material-ui/core';
 
-import '../../css/AddTodo.css'
-
 interface AddTodoState {
   async: boolean,
   text: string
