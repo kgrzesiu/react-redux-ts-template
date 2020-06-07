@@ -6,6 +6,9 @@ Repositiory is used for testing and learning React
 
 ## Releases
 
+#### 1.0.6 https://github.com/kgrzesiu/react-redux-ts-template/releases/tag/1.0.6
+Material UI
+
 #### 1.0.5 https://github.com/kgrzesiu/react-redux-ts-template/releases/tag/1.0.5
 Example of using CSS modules - supported out of the box in Create React App
 
