@@ -5,7 +5,7 @@ import { RootState } from '../../store';
 import { VisibilityFilters } from '../../store/visibilityFilters/types';
 import { toggleTodo, fetchTodos } from '../../store/todos/actions';
 
-import '../../css/TodoList.css';
+import styles from '../../css/TodoList.module.css'; //using css modules
 import { Todo as TodoItem } from '../../store/todos/types';
 
 class TodoList extends Component<ReduxProps> {
@@ -26,7 +26,8 @@ class TodoList extends Component<ReduxProps> {
     }
    
     return (
-      <ul className="TodoList">
+      //using styles (css modules) instead of global style
+      <ul className={styles.TodoList}>
         {this.props.todos.map((todo: any) =>
           <Todo
             {...todo}
