@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { VisibilityFilters } from '../../store/visibilityFilters/types';
 import { setVisibilityFilter } from '../../store/visibilityFilters/actions';
 import { RootState } from '../../store';
+import { Button } from '@material-ui/core';
 
 interface Props {
     children: ReactNode;
@@ -19,13 +20,14 @@ class Link extends Component<ComponentProps> {
 
     render() {
         return (
-            <button
-                onClick={this.handleVisibilityClick}
-                style={{ marginLeft: '4px' }}
+            <Button
+                variant="contained"
                 disabled={this.props.active}
+                onClick={this.handleVisibilityClick}
+                style={{ marginLeft: '10px' }}
             >
                 {this.props.children}
-            </button>
+            </Button>
         )
     }
 }

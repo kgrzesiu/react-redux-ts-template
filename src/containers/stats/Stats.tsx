@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '../../store';
 
 import '../../css/Stats.css'
+import { Paper, Button } from '@material-ui/core';
 
 enum WORK_LOAD {
   doable = "doable",
@@ -34,11 +35,11 @@ class Stats extends React.Component<ConnectedProps<typeof reduxConnector>, IStat
 
   public render() {
     return (
-      <div className="Stats">
+      <Paper className="Stats">
         <div>To complete: {this.props.todos.length}</div>
-        <button onClick={this.getWorkLoadState}>Get Workload state</button>
+        <Button variant="contained" color="primary" onClick={this.getWorkLoadState}>Get Workload state</Button>
         <div>Workload: {this.state.workload}</div>
-      </div>
+      </Paper>
     );
   }
 }

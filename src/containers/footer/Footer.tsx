@@ -5,7 +5,7 @@ import { VisibilityFilters } from '../../store/visibilityFilters/types'
 class Footer extends Component {
     render() {
         return (
-            <div>
+            <div style={{ marginTop: 10, marginBottom: 10 }}>
                 <span>Show:</span>
                 <Link filter={VisibilityFilters.SHOW_ALL}>All</Link>
                 <Link filter={VisibilityFilters.SHOW_ACTIVE}>Active</Link>
@@ -14,6 +14,5 @@ class Footer extends Component {
         )
     }
 }
-
 
 export default Footer
